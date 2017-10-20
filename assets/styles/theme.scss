@@ -1,5 +1,23 @@
 //body,html{padding:0;margin:0;background:rgba(0, 0, 0, 0.5);}
-svg{display:flex;}
+.header{
+  
+}
+.background {
+  width: 100%; 
+  height: 100%;
+  background: cover;
+  justify-content: center;
+  align-content: center;
+  position: absolute; 
+  left: 0px; 
+  top: 0px; 
+  z-index: -1; /* Ensure div tag stays behind content; -999 might work, too. */
+}
+.stretch {
+  width:100%;
+  height:100%;
+}
+.svg{display:flex;}
 circle{ 
   animation: circles 2s alternate infinite cubic-bezier(.5,0,.5,1); 
   cy:15;
