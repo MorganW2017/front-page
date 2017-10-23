@@ -203,7 +203,7 @@ function dayDisplay()
 
 <text id="date" x="55" y="175" font-size="20" fill="red">
 date
-    <animate attributeName="opacity" dur="5s" 
+    <animate attributeName="opacity" dur="10s" 
       values="1;0;1" repeatCount="indefinite"/>
 </text>
 

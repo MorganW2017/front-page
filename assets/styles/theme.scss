@@ -1,29 +1,29 @@
-//body,html{padding:0;margin:0;background:rgba(0, 0, 0, 0.5);}
 .header{
-  
+  z-index: 1; 
 }
-.background {
-  width: 100%; 
-  height: 100%;
-  background: cover;
+.header-text{
+  display: flex;
   justify-content: center;
   align-content: center;
+  color: white;
+}
+.background img{
+  max-width: 100%;
+}
+.background{
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
   position: absolute; 
-  left: 0px; 
-  top: 0px; 
-  z-index: -1; /* Ensure div tag stays behind content; -999 might work, too. */
-}
-.stretch {
-  width:100%;
-  height:100%;
-}
+  top: 0px;
+  left: 0px;
+  z-index: -1;}
 .svg{display:flex;}
 circle{ 
   animation: circles 2s alternate infinite cubic-bezier(.5,0,.5,1); 
   cy:15;
 }
 circle:nth-child(4n+1){fill:blue;}
-circle:nth-child(4n+2){fill:green}
+circle:nth-child(4n+2){fill:green;}
 circle:nth-child(4n+3){fill:red;}
 circle:nth-child(4n+4){fill:yellow;}
 
@@ -34,7 +34,7 @@ circle:nth-child(4n+4){fill:yellow;}
     r: 9 + (0.5 * $i);
   }
 }
-@keyframes circles { to {transform:translate(5%,50%);} }
+@keyframes circles { to {transform:translate(5%,40%);} }
 
 p{
     color: white;
@@ -52,7 +52,12 @@ p{
     z-index: -1;
     position: fixed;
 }
+.worm-2{
+  z-index: -1;
+  position: fixed;
+}
 .clock{
+  max-width: 100%;
   display: flex;
   align-content: center;
   justify-content: center;
