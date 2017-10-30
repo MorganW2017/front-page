@@ -10,6 +10,73 @@
 .background img{
   max-width: 100%;
 }
+body {
+  overflow: hidden;
+}
+
+.wrapper {
+  perspective: 800px;
+  display: flex;
+  justify-content: flex-end;
+  filter: blur(1.5px);
+}
+
+.container {
+  transform: rotateX(40deg) rotateY(40deg) rotateZ(90deg);
+  transform-style: preserve-3d;
+  position: relative;
+  display: flex;
+  height: 150px;
+  width: 150px;
+  margin: 50px 0;
+}
+
+.sphere, .ring {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  transform-style: preserve-3d;
+}
+
+.sphere {
+  animation: rotateSphere 10s linear infinite;
+  &:nth-of-type(1) {
+    @for $i from 1 through 10 {
+      .ring:nth-of-type(#{$i}) { transform: rotateY($i*18deg); }
+    }
+  }
+  &:nth-of-type(2) {
+    @for $i from 1 through 10 {
+      .ring:nth-of-type(#{$i}) { transform: rotateX($i*18deg); }
+    }
+  }
+}
+
+$colors: #40E0D0, #4AE2D2, #53E3D5, #5DE5D7, #66E6D9, #70E8DC, #79E9DE, #83EBE0, #8CECE3, #96EEE5;
+
+.ring {
+  border: 1px solid;
+  box-sizing: border-box;
+  border-radius: 50%;
+  opacity: 0;
+  animation: fadeIn 2000ms ease infinite;
+  box-shadow: 0 0 80px silver, inset 0 0 80px purple;
+  @for $i from 1 through 10 {
+    &:nth-of-type(#{$i}) {
+      border-color: nth($colors, $i);
+      animation-delay: $i*200ms;
+    }
+  }
+}
+
+@keyframes rotateSphere {
+  to { transform: rotateX(360deg) rotateY(360deg); }
+}
+
+@keyframes fadeIn {
+  from, to { opacity: 0; }
+  50% { opacity: 1; }
+}
 .background{
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -61,4 +128,89 @@ p{
   display: flex;
   align-content: center;
   justify-content: center;
+}
+
+.hidden.menu {
+  display: none;
+}
+
+.masthead.segment {
+  min-height: 700px;
+  padding: 1em 0em;
+}
+.masthead .logo.item img {
+  margin-right: 1em;
+}
+.masthead .ui.menu .ui.button {
+  margin-left: 0.5em;
+}
+.masthead h1.ui.header {
+  margin-top: 3em;
+  margin-bottom: 0em;
+  font-size: 4em;
+  font-weight: normal;
+}
+.masthead h2 {
+  font-size: 1.7em;
+  font-weight: normal;
+}
+
+.ui.vertical.stripe {
+  padding: 8em 0em;
+}
+.ui.vertical.stripe h3 {
+  font-size: 2em;
+}
+.ui.vertical.stripe .button + h3,
+.ui.vertical.stripe p + h3 {
+  margin-top: 3em;
+}
+.ui.vertical.stripe .floated.image {
+  clear: both;
+}
+.ui.vertical.stripe p {
+  font-size: 1.33em;
+}
+.ui.vertical.stripe .horizontal.divider {
+  margin: 3em 0em;
+}
+
+.quote.stripe.segment {
+  padding: 0em;
+}
+.quote.stripe.segment .grid .column {
+  padding-top: 5em;
+  padding-bottom: 5em;
+}
+
+.footer.segment {
+  padding: 5em 0em;
+}
+
+.secondary.pointing.menu .toc.item {
+  display: none;
+}
+
+@media only screen and (max-width: 700px) {
+  .ui.fixed.menu {
+    display: none !important;
+  }
+  .secondary.pointing.menu .item,
+  .secondary.pointing.menu .menu {
+    display: none;
+  }
+  .secondary.pointing.menu .toc.item {
+    display: block;
+  }
+  .masthead.segment {
+    min-height: 350px;
+  }
+  .masthead h1.ui.header {
+    font-size: 2em;
+    margin-top: 1.5em;
+  }
+  .masthead h2 {
+    margin-top: 0.5em;
+    font-size: 1.5em;
+  }
 }
