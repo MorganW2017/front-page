@@ -1,26 +1,37 @@
 .header{
-  z-index: 1; 
+  z-index: 1;
 }
-.header-text{
+a {
+  &:first-of-type {
+    animation: 2s infinite alternate color-blink;
+  }
+  font-weight: 600;
+  color: currentcolor;
+  text-decoration: none;
   display: flex;
   justify-content: center;
   align-content: center;
-  color: white;
-}
+  }
 .background img{
   max-width: 100%;
 }
 body {
   overflow: hidden;
+  overflow-x:hidden;
 }
-
+.tail {
+  position: absolute;
+  height: 6px; width: 6px;
+  border-radius: 3px;
+  background: tomato;
+  z-index: 2500;
+}
 .wrapper {
   perspective: 800px;
   display: flex;
   justify-content: flex-end;
   filter: blur(1.5px);
 }
-
 .container {
   transform: rotateX(40deg) rotateY(40deg) rotateZ(90deg);
   transform-style: preserve-3d;
@@ -30,14 +41,12 @@ body {
   width: 150px;
   margin: 50px 0;
 }
-
 .sphere, .ring {
   position: absolute;
   height: 100%;
   width: 100%;
   transform-style: preserve-3d;
 }
-
 .sphere {
   animation: rotateSphere 10s linear infinite;
   &:nth-of-type(1) {
@@ -51,9 +60,7 @@ body {
     }
   }
 }
-
 $colors: #40E0D0, #4AE2D2, #53E3D5, #5DE5D7, #66E6D9, #70E8DC, #79E9DE, #83EBE0, #8CECE3, #96EEE5;
-
 .ring {
   border: 1px solid;
   box-sizing: border-box;
@@ -68,11 +75,9 @@ $colors: #40E0D0, #4AE2D2, #53E3D5, #5DE5D7, #66E6D9, #70E8DC, #79E9DE, #83EBE0,
     }
   }
 }
-
 @keyframes rotateSphere {
   to { transform: rotateX(360deg) rotateY(360deg); }
 }
-
 @keyframes fadeIn {
   from, to { opacity: 0; }
   50% { opacity: 1; }
@@ -86,14 +91,13 @@ $colors: #40E0D0, #4AE2D2, #53E3D5, #5DE5D7, #66E6D9, #70E8DC, #79E9DE, #83EBE0,
   z-index: -1;}
 .svg{display:flex;}
 circle{ 
-  animation: circles 2s alternate infinite cubic-bezier(.5,0,.5,1); 
+  animation: circles 2s alternate infinite cubic-bezier(.5,0,.5,1);
   cy:15;
 }
 circle:nth-child(4n+1){fill:blue;}
 circle:nth-child(4n+2){fill:green;}
 circle:nth-child(4n+3){fill:red;}
 circle:nth-child(4n+4){fill:yellow;}
-
 @for $i from 0 through 45 {
   circle:nth-child(#{$i}) {
     animation-delay:-0.10s * $i;
@@ -102,7 +106,6 @@ circle:nth-child(4n+4){fill:yellow;}
   }
 }
 @keyframes circles { to {transform:translate(5%,40%);} }
-
 p{
     color: white;
     box-shadow: 0em 0em 2.5em;
@@ -129,11 +132,9 @@ p{
   align-content: center;
   justify-content: center;
 }
-
 .hidden.menu {
   display: none;
 }
-
 .masthead.segment {
   min-height: 700px;
   padding: 1em 0em;
@@ -153,7 +154,6 @@ p{
 .masthead h2 {
   font-size: 1.7em;
   font-weight: normal;
-}
 
 .ui.vertical.stripe {
   padding: 8em 0em;
@@ -213,4 +213,5 @@ p{
     margin-top: 0.5em;
     font-size: 1.5em;
   }
+}
 }
