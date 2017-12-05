@@ -1,0 +1,37 @@
+{
+  "name": "front-page",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "bootstrap": "^3.3.7",
+    "express": "^4.16.2",
+    "less": "^2.7.3",
+    "less-loader": "^4.0.5",
+    "mongoose": "^4.13.6",
+    "vue": "^2.5.9",
+    "vue-svg-loader": "^0.4.0",
+    "vue-template-compiler": "^2.5.9",
+    "vuex": "^3.0.1",
+    "webpack": "^3.10.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MorganW2017/front-page.git"
+  },
+  "keywords": [
+    "front",
+    "page"
+  ],
+  "author": "Morgan Waters <cdroot42@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MorganW2017/front-page/issues"
+  },
+  "homepage": "https://github.com/MorganW2017/front-page#readme"
+}
