@@ -3,24 +3,16 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import io from 'socket.io-client'
 import store from './store'
+import './plugins'
 
-require('../node_modules/bootstrap/less/bootstrap.less')
+Vue.config.productionTip = false
 
-// let socket = io()
-
-// socket.on('CONNECTED', function(data) {
-//     console.log(data)
-//     socket.emit('update', { data: 'blarg', boardId: '3289748320' })
-// })
-
-
- 
+/* eslint-disable no-new */
 new Vue({
-    el: '#app',
-    store,
-    router,
-    template: '<App/>',
-    components: { App }
+  el: '#app',
+  router,
+  store,
+  template: '<App/>',
+  components: { App }
 })

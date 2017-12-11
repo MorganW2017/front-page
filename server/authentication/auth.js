@@ -5,6 +5,7 @@ router.post('/register', (req, res) => {
   Users.create(req.body)
     .then((user) => {
       req.session.uid = user._id
+      req.session.name = user.name
       req.session.save()
       user.password = null
       delete user.password
@@ -25,9 +26,10 @@ router.post('/login', (req, res) => {
       user.validatePassword(req.body.password)
         .then(valid => {
           if(!valid){
-            return res.status(401).send({error: 'Invalid Email or Password'})
+            return res.send({error: 'Invalid Email or Password'})
           }
           req.session.uid = user._id;
+          req.session.name = user.name
           req.session.save()
           user.password = null
           delete user.password
@@ -37,11 +39,11 @@ router.post('/login', (req, res) => {
           })
         })
         .catch(err => {
-          res.status(401).send({ error: err || 'Invalid Email or Password' })
+          res.send({ error: err || 'Invalid Email or Password' })
         })
     })
     .catch(err => {
-      res.status(401).send({
+      res.send({
         error: err,
         message: 'Invalid Email or Password'
       })
@@ -58,14 +60,13 @@ router.delete('/logout', (req, res) => {
 
 router.get('/authenticate', (req,res) => {
   Users.findById(req.session.uid).then(user => {
-    if(!user){
-      return res.status(401).send({"error": "Please Login"})
-    }
+    req.session.name = user.name
+    req.session.save()
     return res.send ({
       data: user
     })
   }).catch(err=>{
-    return res.status(500).send({
+    return res.send({
       error:err
     })
   })

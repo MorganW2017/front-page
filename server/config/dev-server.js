@@ -17,7 +17,7 @@ let server = require('http').createServer(app)
 function Validate(req, res, next) {
     // ONLY ALLOW GET METHOD IF NOT LOGGED IN 
     console.log(req.session)
-    if (!req.session.uid) {
+    if (req.method !== 'GET' && !req.session.uid) {
         return res.status(401).send({ error: 'Please Login or Register to continue' })
     }
     return next()
@@ -32,7 +32,7 @@ function logger(req, res, next) {
 app.use(session)
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
-app.use(express.static(__dirname + '/../../server/public/'))
+app.use('*', logger)
 app.use('*', cors(corsOptions))
 app.use('/', Auth)
 
@@ -45,14 +45,36 @@ let io = require('socket.io')(server, {
     origins: '*:*'
 })
 
-io.on('connection', function(socket) {
+let connectedUsers = {}
+
+io.on('connection', function (socket) {
+    var client = {}
     socket.emit('CONNECTED', {
         socket: socket.id,
-        message: 'Welcome to getmorgan.info'
+        message: 'Welcome to the Jungle',
+        connectedUsers
     })
 
-    socket.on('update', (d) => {
-        console.log(d)
+    socket.on('setUser', (user) => {
+        client = user
+        connectedUsers[user._id] = {
+            userId: user._id,
+            name: user.name
+        }
+        socket.broadcast.emit('userConnected', {
+            userId: user._id,
+            name: user.name
+        })
+        console.log(connectedUsers)
+    })
+
+    socket.on('update', payload => {
+        socket.broadcast.emit('receiveUpdate', payload)
+    })
+
+    socket.on('disconnect', () => {
+        delete connectedUsers[client._id]
+        socket.broadcast.emit('userDisconnected', client._id)
     })
 
 })
