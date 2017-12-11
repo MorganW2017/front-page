@@ -12,27 +12,6 @@ const models = {
         endpoint: 'boards',
         useCustomRoutes: true
     },
-    task: {
-        name: 'Task',
-        endpoint: 'tasks',
-        useCustomRoutes: true
-    },
-    list: {
-        name: 'List',
-        endpoint: 'lists',
-        useCustomRoutes: true
-    },
-    user: {
-        name: 'User',
-        endpoint: 'users',
-        preventDefaultApi: true,
-        useCustomRoutes: true
-    },
-    comment: {
-        name: 'Comment',
-        endpoint: 'comments',
-        useCustomRoutes: true
-    }
 }
 
 
