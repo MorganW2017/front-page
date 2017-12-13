@@ -93,12 +93,18 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(54);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_axios__);
-throw new Error("Cannot find module \"./auth-store\"");
-throw new Error("Cannot find module \"./socket-store\"");
 
 
 
 
+var production = !window.location.host.includes('localhost');
+var baseUrl = production ? '//morgan-get.herokuapp.com/' : '//localhost:3000/';
+
+let api = __WEBPACK_IMPORTED_MODULE_2_axios___default.a.create({
+    baseURL: baseUrl + 'api/',
+    timeout: 2000,
+    withCredentials: true
+})
 
 
 let api = __WEBPACK_IMPORTED_MODULE_2_axios___default.a.create({
@@ -109,60 +115,78 @@ let api = __WEBPACK_IMPORTED_MODULE_2_axios___default.a.create({
 
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */])
 
-var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
+var store = new vuex.Store({
     state: {
+        error: {},
         user: {},
-        messages: []
-    },
-    modules:{
-        authStore: __WEBPACK_IMPORTED_MODULE_3__auth_store___default.a,
-        socketStore: __WEBPACK_IMPORTED_MODULE_4__socket_store___default.a
     },
     mutations: {
+        handleError(state, err) {
+            state.error = err
+        },
         setUser(state, user) {
             state.user = user
-        },
-        setResource(state, payload){
-            state[payload.resource] = payload.data
-        },
-        addToResource(state, payload){
-            if(Array.isArray(state[payload.resource])){
-                state[payload.resource].push(payload.data)
-            }else if(typeof state[payload.resource] == 'object'){
-                state[payload.resource][payload.data._id] = payload.data
-            }
         }
     },
     actions: {
-        create({commit, dispatch}, payload){
-            api.post(payload.endpoint, payload.data).then(res => {
-                payload.data = res.data.data
-                commit('setResource', payload)
-                if(payload.emit){
-                    payload.mutation = 'setResource'
-                    dispatch('emitData', payload)
-                }
-            })
+        //ERROR FUNCTIONS
+        handleError({ commit, dispatch }, err) {
+            commit('handleError', err)
         },
-        createOne({commit, dispatch}, payload){
-            api.post(payload.endpoint, payload.data).then(res => {
-                payload.data = res.data.data
-                commit('addToResource', payload)
-                if(payload.emit){
-                    payload.mutation = 'addToResource'
-                    dispatch('emitData', payload)
-                }
-            })
+        //LOGIN FUNCTIONS
+        login({ commit, dispatch }, payload) {
+
+            auth.post('login', payload)
+                .then(res => {
+                    commit('setUser', res.data.data)
+                    router.push({ name: 'Boards' })
+                    console.log(res)
+                })
+                .catch(err => {
+                    commit('handleError', err)
+                })
         },
-        get({commit, dispatch}, payload){
-            api(payload.endpoint).then(res => {
-                payload.data = res.data.data
-                commit('setResource', payload)
-            })
+        register({ commit, dispatch }, payload) {
+
+            auth.post('register', payload)
+                .then(res => {
+                    commit('setUser', res.data.data)
+                    router.push({ name: 'Boards' })
+                    console.log('User account successfully created')
+                })
+                .catch(err => {
+                    commit('handleError', err)
+                })
+
+        },
+        logout({ commit, dispatch }) {
+            auth.delete('logout')
+                .then(res => {
+                    commit('setUser', {})
+                    router.push({ name: 'Login' })
+                    console.log('User session terminated')
+                })
+                .catch(err => {
+                    commit('handleError', err)
+                })
+
+        },
+        authenticate({ commit, dispatch }) {
+            auth.get('authenticate')
+                .then(res => {
+
+                    router.push({ name: 'Boards' })
+                    commit('setUser', res.data.data)
+                })
+                .catch(err => {
+
+                    commit('handleError', err)
+                    router.push({ name: 'Login' })
+                })
+
         }
     }
 })
-
 
 /* harmony default export */ __webpack_exports__["a"] = (store);
 
@@ -1195,4 +1219,4 @@ new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
 
 /***/ })
 ],[55]);
-//# sourceMappingURL=app.cc8014644f3602045dce.js.map
+//# sourceMappingURL=app.261a349de680ca5a67aa.js.map
