@@ -47,6 +47,11 @@
 
 
 
+body[data-v-7958d817],
+html[data-v-7958d817] {
+  background: #555 !important
+}
+
 .action {
     cursor: pointer;
     opacity: .8;
@@ -71,4 +76,4 @@
 }
 
 
-/*# sourceMappingURL=app.344cb2249366fd84d2f5d6d29531cf6f.css.map*/
+/*# sourceMappingURL=app.5c6a167df30049a924bffe28ea929f16.css.map*/
