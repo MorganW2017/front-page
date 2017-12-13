@@ -59,7 +59,7 @@
             <div class="action muted light-blue-text" @click="toggleFormAction">{{showLogin ? 'Create account' : 'Show Login'}}</div>
           </div>
       
-          <div class="chatboard" v-else>
+          <div class="chathome" v-else>
             <h3>lets chat</h3>
             <ul>
               <li v-for="u in connectedUsers">

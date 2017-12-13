@@ -10,4 +10,4 @@ var schema = new mongoose.Schema({
   collaborators: [{type: ObjectId, ref: models.user.name}]
 });
 
-module.exports = mongoose.model(models.board.name, schema);
+module.exports = mongoose.model(models.home.name, schema);

@@ -2,11 +2,10 @@
     <div class="login">
         <div class="row text-center">
             <div class="col-xs-12">
-        <h1 v-if="loginForm">Log in to view boards.</h1>
+        <h1 v-if="loginForm">Log in to view home.</h1>
         <h1 v-else>Please register to continue.</h1>
     </div>
     </div>
-        <!-- Add error message if login fails -->
         <h5 class="text-danger" v-if="error">
             <b>{{error}}</b>
         </h5>

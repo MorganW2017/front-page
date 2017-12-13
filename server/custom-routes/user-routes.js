@@ -1,27 +1,27 @@
-let Boards = require('../models/board')
+let Home = require('../models/home')
 let Users = require('../models/user')
 
 module.exports = {
-    userBoards: {
-        path: '/userboards',
+    userhome: {
+        path: '/userhome',
         reqType: 'get',
         method(req, res, next) {
-            let action = 'Find User Boards'
-            Boards.find({ creatorId: req.session.uid })
-                .then(boards => {
-                    res.send(handleResponse(action, boards))
+            let action = 'Find User home'
+            home.find({ creatorId: req.session.uid })
+                .then(home => {
+                    res.send(handleResponse(action, home))
                 }).catch(error => {
                     return next(handleResponse(action, null, error))
                 })
         }
     },
-    sharedBoards: {
-        path: '/sharedboards',
+    sharedhome: {
+        path: '/sharedhome',
         reqType: 'get',
         method(req, res, next) {
-            Boards.find({ collaborators: { $in: req.session.uid } })
-                .then(boards => {
-                    res.send(handleResponse(action, boards))
+            home.find({ collaborators: { $in: req.session.uid } })
+                .then(home => {
+                    res.send(handleResponse(action, home))
                 }).catch(error => {
                     return next(handleResponse(action, null, error))
                 })

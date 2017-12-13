@@ -7,9 +7,9 @@ const actions = {
 }
 
 const models = {
-    board: {
-        name: 'Board',
-        endpoint: 'boards',
+    home: {
+        name: 'Home',
+        endpoint: 'home',
         useCustomRoutes: true
     },
 }
