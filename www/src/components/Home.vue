@@ -4,9 +4,6 @@
         </div>
       </template>
       
-      
-      
-      
       <script>
       
         export default {
@@ -16,19 +13,6 @@
               showReset: false,
               formAction: this.login,
               user: {}
-            }
-          },
-          methods: {
-            login: function (e) {
-              e.preventDefault()
-              this.$store.dispatch('login', this.user)
-            },
-            register() {
-              this.$store.dispatch('register', this.user)
-            },
-            toggleFormAction() {
-              this.showLogin = !this.showLogin
-              this.formAction = this.showLogin ? this.login : this.register
             }
           },
           computed: {

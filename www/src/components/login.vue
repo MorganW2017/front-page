@@ -2,10 +2,10 @@
     <div class="login">
         <div class="row text-center">
             <div class="col-xs-12">
-        <h1 v-if="loginForm">Log in to view home.</h1>
-        <h1 v-else>Please register to continue.</h1>
-    </div>
-    </div>
+                <h1 v-if="loginForm">Log in to view home.</h1>
+                <h1 v-else>Please register to continue.</h1>
+            </div>
+        </div>
         <h5 class="text-danger" v-if="error">
             <b>{{error}}</b>
         </h5>
@@ -43,7 +43,9 @@
                 </div>
             </form>
         </div>
-        <p v-if="loginForm" @click="toggleLoginForm" class="action">Don't have an account? <strong>Sign up!</strong></p>
+        <p v-if="loginForm" @click="toggleLoginForm" class="action">Don't have an account?
+            <strong>Sign up!</strong>
+        </p>
         <p v-else @click="toggleLoginForm" class="action">Already a user? Click here to login</p>
     </div>
 </template>
@@ -98,22 +100,21 @@
         opacity: 1
     }
 
-    
+
     .form {
         width: 100vw;
         padding-left: 20vw;
         padding-right: 20vw;
         text-align: center;
-        
+
     }
 
-    .form-control{
+    .form-control {
         text-align: center;
-        
+
     }
 
-    .login{
+    .login {
         background-color: rgba(2, 74, 102, 0.11)
     }
-
 </style>

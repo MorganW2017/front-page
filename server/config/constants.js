@@ -12,6 +12,11 @@ const models = {
         endpoint: 'home',
         useCustomRoutes: true
     },
+    login: {
+        name: 'Login',
+        endpoint: 'login',
+        useCustomRoutes: true
+    },
 }
 
 
