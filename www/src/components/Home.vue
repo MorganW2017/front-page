@@ -1,38 +1,33 @@
 <template>
-        <div>
+  <div>
+  </div>
+</template>
 
-        </div>
-      </template>
-      
-      <script>
-      
-        export default {
-          data() {
-            return {
-              showLogin: true,
-              showReset: false,
-              formAction: this.login,
-              user: {}
-            }
-          },
-          computed: {
-            activeUser() {
-              return this.$store.state.user
-            }
-          },
-          mounted() {
-            console.log("mounting login...")
-          },
-          components:{
-            Chat
-          }
-        }
-      </script>
-      
-      
-      <style scoped>
-        body,
-        html {
-          background: #555 !important
-        }
-      </style>
+<script>
+  export default {
+    data() {
+      return {
+        register: {},
+        login: {},
+      }
+    },
+    name: 'home',
+    mounted() {
+    },
+    computed: {
+      user() {
+        return this.$store.state.user
+      }
+    },
+    methods: {
+      userLogout() {
+        this.$store.dispatch('logout', this.$store.state.user._id)
+      }
+    }
+  }
+</script>
+
+<style scoped>
+ 
+ 
+</style> 

@@ -45,38 +45,6 @@ let io = require('socket.io')(server, {
     origins: '*:*'
 })
 
-let connectedUsers = {}
 
-io.on('connection', function (socket) {
-    var client = {}
-    socket.emit('CONNECTED', {
-        socket: socket.id,
-        message: 'Welcome to the Jungle',
-        connectedUsers
-    })
-
-    socket.on('setUser', (user) => {
-        client = user
-        connectedUsers[user._id] = {
-            userId: user._id,
-            name: user.name
-        }
-        socket.broadcast.emit('userConnected', {
-            userId: user._id,
-            name: user.name
-        })
-        console.log(connectedUsers)
-    })
-
-    socket.on('update', payload => {
-        socket.broadcast.emit('receiveUpdate', payload)
-    })
-
-    socket.on('disconnect', () => {
-        delete connectedUsers[client._id]
-        socket.broadcast.emit('userDisconnected', client._id)
-    })
-
-})
 
 module.exports = server

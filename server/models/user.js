@@ -11,6 +11,7 @@ let schema = new Schema({
   created: { type: Number, required: true, default: Date.now() }
 })
 
+
 schema.pre('save', function (next) {
   var user = this;
   if (!user.isModified('password')) {

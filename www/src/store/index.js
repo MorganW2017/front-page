@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
+import router from '../router'
 
 var production = !window.location.host.includes('localhost');
 var baseUrl = production ? '//morgan-get.herokuapp.com/' : '//localhost:3000/';
@@ -12,7 +13,7 @@ let api = axios.create({
 })
 
 
-let api = axios.create({
+let auth = axios.create({
     baseURL: '//localhost:3000/api/',
     timeout: 2000,
     withCredentials: true
@@ -20,79 +21,70 @@ let api = axios.create({
 
 Vue.use(Vuex)
 
-var store = new vuex.Store({
+var store = new Vuex.Store({
     state: {
+        dashboard: [],
         error: {},
-        user: {},
+        user: {}
     },
     mutations: {
+        setUser(state, data) {
+            state.user = data
+        },
         handleError(state, err) {
             state.error = err
         },
-        setUser(state, user) {
-            state.user = user
-        }
     },
     actions: {
-        //ERROR FUNCTIONS
-        handleError({ commit, dispatch }, err) {
-            commit('handleError', err)
-        },
-        //LOGIN FUNCTIONS
-        login({ commit, dispatch }, payload) {
 
-            auth.post('login', payload)
+        //---------LOGIN/REGISTER/LOGOUT-----------//
+        userLogin({ commit, dispatch }, login) {
+            auth.post('login', login)
                 .then(res => {
                     commit('setUser', res.data.data)
-                    router.push({ name: 'Boards' })
-                    console.log(res)
+                    router.push({ name: 'Dashboard' })
                 })
-                .catch(err => {
-                    commit('handleError', err)
+                .catch(() => {
+                    router.push({ name: "Login" })
                 })
         },
-        register({ commit, dispatch }, payload) {
-
-            auth.post('register', payload)
+        userRegister({ commit, dispatch }, register) {
+            auth.post('register', register)
                 .then(res => {
                     commit('setUser', res.data.data)
-                    router.push({ name: 'Boards' })
-                    console.log('User account successfully created')
+                    router.push({ name: 'Dashboard' })
                 })
                 .catch(err => {
                     commit('handleError', err)
+                    router.push({ name: "Login" })
                 })
-
-        },
-        logout({ commit, dispatch }) {
-            auth.delete('logout')
-                .then(res => {
-                    commit('setUser', {})
-                    router.push({ name: 'Login' })
-                    console.log('User session terminated')
-                })
-                .catch(err => {
-                    commit('handleError', err)
-                })
-
         },
         authenticate({ commit, dispatch }) {
-            auth.get('authenticate')
+            auth('authenticate')
                 .then(res => {
-
-                    router.push({ name: 'Boards' })
                     commit('setUser', res.data.data)
+                    router.push({ name: 'Dashboard' })
+                })
+                .catch(() => {
+                    router.push({ name: "Login" })
+                })
+        },
+        logout({ commit, dispatch }, user) {
+            auth.delete('logout')
+                .then(res => {
+                    console.log(res)
+                    dispatch('authenticate')
                 })
                 .catch(err => {
-
-                    commit('handleError', err)
-                    router.push({ name: 'Login' })
+                    console.log(err)
+                    res.status(401).send({ Error: err })
                 })
+        },
+        //^^^^^^^^^^^^^^USER/REGISTER/LOGOUT^^^^^^^^^^^//
 
+        handleError({ commit, dispatch }, err) {
+            commit('handleError', err)
         }
     }
 })
-
 export default store
-
-
