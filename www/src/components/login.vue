@@ -55,6 +55,9 @@
                 </div>
             </div>
         </div>
+        <div class="clock">
+            <iframe src="../assets/SVGDigitalClock.svg" width="300" height="200"> </iframe>
+        </div>
     </div>
 </template>
 <script>
@@ -90,6 +93,11 @@
     }
 </script>
 <style>
+    .clock {
+        display: flex;
+        justify-content: center;
+    }
+
     .header {
         display: flex;
         justify-content: center;
