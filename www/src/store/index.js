@@ -14,7 +14,7 @@ let api = axios.create({
 
 
 let auth = axios.create({
-    baseURL: '//localhost:3000/api/',
+    baseURL: '//localhost:3000/',
     timeout: 2000,
     withCredentials: true
 })
@@ -23,7 +23,7 @@ Vue.use(Vuex)
 
 var store = new Vuex.Store({
     state: {
-        dashboard: [],
+        home: [],
         error: {},
         user: {}
     },
@@ -42,7 +42,7 @@ var store = new Vuex.Store({
             auth.post('login', login)
                 .then(res => {
                     commit('setUser', res.data.data)
-                    router.push({ name: 'Dashboard' })
+                    router.push({ name: 'Home' })
                 })
                 .catch(() => {
                     router.push({ name: "Login" })
@@ -52,7 +52,7 @@ var store = new Vuex.Store({
             auth.post('register', register)
                 .then(res => {
                     commit('setUser', res.data.data)
-                    router.push({ name: 'Dashboard' })
+                    router.push({ name: 'Home' })
                 })
                 .catch(err => {
                     commit('handleError', err)
@@ -63,7 +63,7 @@ var store = new Vuex.Store({
             auth('authenticate')
                 .then(res => {
                     commit('setUser', res.data.data)
-                    router.push({ name: 'Dashboard' })
+                    router.push({ name: 'Home' })
                 })
                 .catch(() => {
                     router.push({ name: "Login" })

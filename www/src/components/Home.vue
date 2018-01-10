@@ -1,5 +1,8 @@
 <template>
   <div>
+    <span @click="userLogout">
+      <p class="logout-header">Logout</p>
+    </span>
   </div>
 </template>
 
@@ -28,6 +31,4 @@
 </script>
 
 <style scoped>
- 
- 
-</style> 
+</style>
