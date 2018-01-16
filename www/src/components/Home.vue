@@ -3,7 +3,7 @@
     <div>
 
       <div class="bg">
-        <img src="../assets/rooted_bg.jpg" alt="Roots">
+        <img src="https://i.pinimg.com/originals/95/3a/3a/953a3a44d0e7c18f66a2481e2dc9707b.jpg" alt="Gamer">
       </div>
       <svg viewbox="0 -5 400 400" class="worm">
         <circle />
@@ -54,16 +54,19 @@
       </svg>
     </div>
     <div class="ui inverted menu">
-      <div class="header item">Brand</div>
-      <router-link class="item">Home</router-link>
-      <div class="active item">Link</div>
+      <div class="header item">Home</div>
+      <div class="active item">
+        <a href="https://github.com/MorganW2017/">Github</a>
+      </div>
       <div class="ui dropdown item">
-        Dropdown
+        Projects
         <i class="dropdown icon"></i>
         <div class="menu">
           <div class="item">Rooted</div>
-          <div class="item">Another Action</div>
-          
+          <div class="item">Slap Game</div>
+          <div class="item">Sample Text</div>
+          <div class="item">Sample Text</div>
+
         </div>
       </div>
       <div class="right menu">
@@ -144,7 +147,7 @@
     z-index: -1;
     position: fixed;
     display: flex;
-    margin-top: 100px;
+    margin-top: 75px;
   }
 
   body,
