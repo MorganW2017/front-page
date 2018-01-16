@@ -61,7 +61,7 @@
         Dropdown
         <i class="dropdown icon"></i>
         <div class="menu">
-          <div class="item">Action</div>
+          <div class="item">Rooted</div>
           <div class="item">Another Action</div>
           
         </div>

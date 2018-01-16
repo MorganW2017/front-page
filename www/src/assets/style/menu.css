@@ -1754,7 +1754,7 @@ Floated Menu / Item
 .ui.menu.fixed .item:last-child {
   border-radius: 0px !important;
 }
-.ui.fixed.menu,
+/* .ui.fixed.menu,
 .ui[class*="top fixed"].menu {
   top: 0px;
   left: 0px;
@@ -1796,7 +1796,7 @@ Floated Menu / Item
   bottom: auto;
   width: auto;
   height: 100%;
-}
+} */
 
 /* Coupling with Grid */
 .ui.fixed.menu + .ui.grid {
@@ -1893,7 +1893,7 @@ Floated Menu / Item
   border-top: none;
 }
 
-/* Top */
+Top
 .ui[class*="top attached"].menu {
   bottom: 0px;
   margin-bottom: 0em;

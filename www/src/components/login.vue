@@ -1,58 +1,68 @@
 <template>
     <div>
-        <div class="pic">
-            <img src="../assets/rooted_logo.png" alt="√Rooted">
-            <div class="loginbox">
-                <div class="login">
-                    <form @submit.prevent="userLogin" class="form-horizontal">
-                        <div class="form-group">
-                            <input class="form-group" type="email" name="email" placeholder="email" size="20" v-model='login.email' required>
-                        </div>
-                        <div class="form-group">
-                            <div>
-                                <input type="password" id="loginPassword" placeholder="Password" size="10" v-model="login.password" />
-                            </div>
-                            <div class="button">
-                                <button type="submit" class="btn btn-default text-center">Sign in</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <div class="registerhere">
-            <div class="regButton">
-                <p @click="toggleRegForm">
-                    <span @click="regSeen = !regSeen">Don't have an account? Register here.</span>
-                </p>
-                <div v-if="regSeen">
-                    <form class="form-horizontal reg-container" role="form">
-                        <div class="form-group">
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label" for="inputName">Name:</label>
-                                <div class="col-sm-3 regInput">
-                                    <input type="text" size="20" id="inputName" placeholder="Name" v-model="register.name" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label" for="inputEmail">Email:</label>
-                                <div class="col-sm-3 regInput">
-                                    <input type="email" size="20" id="inputEmail" placeholder="Email" v-model="register.email" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label" for="inputPassword">Password:</label>
-                                <div class="col-sm-3 regInput">
-                                    <input type="password" size="20" id="inputPassword" placeholder="Password" v-model="register.password" />
-                                </div>
-                            </div>
-                            <div class="form-group regSub-container">
-                                <div class="col-sm-offset-2 col-sm-3">
-                                    <button @click="userRegister" data-dismiss="modal" class="btn btn-default">Register Me</button>
-                                </div>
+        <div class="ui middle aligned center aligned grid">
+            <div class="column">
+                <h2 class="ui teal image header">
+                    <!-- <img src="assets/images/logo.png" class="image"> -->
+                    <div class="content">
+                        Log-in to continue
+                    </div>
+                </h2>
+                <form @submit.prevent="userLogin" class="ui large form loginbox">
+                    <div class="ui stacked segment login">
+                        <div class="field form-group">
+                            <div class="ui left icon input">
+                                <i class="user icon"></i>
+                                <input @submit.prevent="userLogin" type="email" name="email" placeholder="E-mail address" v-model='login.email' required>
                             </div>
                         </div>
-                    </form>
+                        <div class="field">
+                            <div class="ui left icon input">
+                                <i class="lock icon"></i>
+                                <input @submit.prevent="userLogin" type="password" name="password" placeholder="Password" v-model="login.password">
+                            </div>
+                        </div>
+                        <button @submit.prevent="userLogin" class="ui fluid large teal submit button">Login</button>
+                    </div>
+                    <div class="ui error message"></div>
+                </form>
+                <div class="ui message">
+                    <div class="registerhere">
+                        <div class="regButton">
+                            <p @click="toggleRegForm">
+                                <span @click="regSeen = !regSeen">New around here?</span>
+                            </p>
+                            <div v-if="regSeen">
+                                <form class="form-horizontal reg-container" role="form">
+                                    <div class="form-group">
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label" for="inputName">Name:</label>
+                                            <div class="col-sm-3 regInput">
+                                                <input type="text" size="30" id="inputName" placeholder="Name" v-model="register.name" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label" for="inputEmail">Email:</label>
+                                            <div class="col-sm-3 regInput">
+                                                <input type="email" size="30" id="inputEmail" placeholder="Email" v-model="register.email" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label" for="inputPassword">Password:</label>
+                                            <div class="col-sm-3 regInput">
+                                                <input type="password" size="30" id="inputPassword" placeholder="Password" v-model="register.password" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group regSub-container">
+                                            <div class="col-sm-offset-2 col-sm-3">
+                                                <button @click="userRegister" data-dismiss="modal" class="btn btn-default">Register Me</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -93,6 +103,26 @@
     }
 </script>
 <style>
+    .content {
+        margin-top: 50px;
+    }
+
+    body {
+        background-color: #DADADA;
+    }
+
+    body>.grid {
+        height: 100%;
+    }
+
+    .image {
+        margin-top: -100px;
+    }
+
+    .column {
+        max-width: 450px;
+    }
+
     .pic {
         justify-content: center;
         display: flex;
@@ -113,9 +143,8 @@
     }
 
     .form-group {
-        display: flex;
-        justify-content: center;
         margin-top: 10px;
+        align-content: center;
     }
 
     img {
