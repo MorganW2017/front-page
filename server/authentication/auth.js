@@ -20,7 +20,9 @@ router.post('/register', (req, res) => {
 
 
 router.post('/login', (req, res) => {
+  console.log()
   Users.findOne({ email: req.body.email })
+    // Users.findOne({ password: req.body.password })
     .then(user => {
       user.validatePassword(req.body.password)
         .then(valid => {

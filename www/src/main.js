@@ -6,6 +6,12 @@ import router from './router'
 import io from 'socket.io-client'
 import store from './store'
 import './plugins'
+// import Home from './Home.vue'
+// const app = new Vue({ 
+//    render: h => h(Home), 
+// }).$mount('#app');
+
+
 require('../node_modules/bootstrap/less/bootstrap.less')
 
 Vue.config.productionTip = false

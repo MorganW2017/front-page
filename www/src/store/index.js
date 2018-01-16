@@ -2,6 +2,9 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
 import router from '../router'
+import SuiVue from 'semantic-ui-vue';
+import 'semantic-ui-css/semantic.min.css';
+
 
 var production = !window.location.host.includes('localhost');
 var baseUrl = production ? '//morgan-get.herokuapp.com/' : '//localhost:3000/';
@@ -20,6 +23,8 @@ let auth = axios.create({
 })
 
 Vue.use(Vuex)
+Vue.use(SuiVue);
+
 
 var store = new Vuex.Store({
     state: {
@@ -38,7 +43,7 @@ var store = new Vuex.Store({
     actions: {
 
         //---------LOGIN/REGISTER/LOGOUT-----------//
-        userLogin({ commit, dispatch }, login) {
+        userLogin({ commit, dispatch }, login) { console.log(login)
             auth.post('login', login)
                 .then(res => {
                     commit('setUser', res.data.data)

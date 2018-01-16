@@ -1,17 +1,18 @@
 <template>
     <div>
-        <div class="top container">
+        <div class="pic">
+            <img src="../assets/rooted_logo.png" alt="√Rooted">
             <div class="loginbox">
-                <div class='login'>
+                <div class="login">
                     <form @submit.prevent="userLogin" class="form-horizontal">
                         <div class="form-group">
-                            <label for="loginPassword" class="white">Password</label>
-                            <div>
-                                <input type="password" id="loginPassword" placeholder="Password" size="35" v-model="login.password" />
-                            </div>
+                            <input class="form-group" type="email" name="email" placeholder="email" size="20" v-model='login.email' required>
                         </div>
                         <div class="form-group">
-                            <div class=" col-sm-12">
+                            <div>
+                                <input type="password" id="loginPassword" placeholder="Password" size="10" v-model="login.password" />
+                            </div>
+                            <div class="button">
                                 <button type="submit" class="btn btn-default text-center">Sign in</button>
                             </div>
                         </div>
@@ -30,19 +31,19 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label" for="inputName">Name:</label>
                                 <div class="col-sm-3 regInput">
-                                    <input type="text" size="40" id="inputName" placeholder="Name" v-model="register.name" />
+                                    <input type="text" size="20" id="inputName" placeholder="Name" v-model="register.name" />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-2 control-label" for="inputEmail">Email:</label>
                                 <div class="col-sm-3 regInput">
-                                    <input type="email" size="40" id="inputEmail" placeholder="Email" v-model="register.email" />
+                                    <input type="email" size="20" id="inputEmail" placeholder="Email" v-model="register.email" />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-2 control-label" for="inputPassword">Password:</label>
                                 <div class="col-sm-3 regInput">
-                                    <input type="password" size="40" id="inputPassword" placeholder="Password" v-model="register.password" />
+                                    <input type="password" size="20" id="inputPassword" placeholder="Password" v-model="register.password" />
                                 </div>
                             </div>
                             <div class="form-group regSub-container">
@@ -66,6 +67,7 @@
                 register: {
                 },
                 login: {
+                    email: '',
                     password: ''
                 },
                 formOption: '',
@@ -74,6 +76,7 @@
         },
         methods: {
             userLogin() {
+                // console.log(login)
                 this.$store.dispatch('userLogin', this.login)
             },
             userRegister() {
@@ -90,9 +93,9 @@
     }
 </script>
 <style>
-    .header {
-        display: flex;
+    .pic {
         justify-content: center;
+        display: flex;
     }
 
     .regInput {
@@ -106,36 +109,23 @@
     .registerhere {
         display: flex;
         justify-content: center;
-    }
-
-    .top {
-        display: flex;
-        justify-content: center;
-        border-radius: 50%;
+        margin-top: 50px;
     }
 
     .form-group {
         display: flex;
         justify-content: center;
-        width: 200px;
-
+        margin-top: 10px;
     }
 
-    .loginbox {
-        background-color: rgba(8, 248, 20, 0.815);
-        padding: .5rem;
-        height: 200px;
-        width: 200px;
-        border-radius: 50%;
+    img {
         display: flex;
         justify-content: center;
+        max-width: 100%;
+
     }
 
     .action {
         cursor: pointer;
-    }
-
-    .logo {
-        height: 25rem;
     }
 </style>
