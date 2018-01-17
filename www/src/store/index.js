@@ -6,9 +6,9 @@ import SuiVue from 'semantic-ui-vue';
 import 'semantic-ui-css/semantic.min.css';
 
 
-var production = !window.location.host.includes('localhost');
-var baseUrl = production ? '//morgan-get.herokuapp.com/' : '//localhost:3000/';
-
+// var production = !window.location.host.includes('localhost');
+// var baseUrl = production ? '//morgan-get.herokuapp.com/' : '//localhost:3000/';
+var baseUrl = window.location.host.includes('localhost') ? '//morgan-get.herokuapp.com/' : '//localhost:3000/';
 let api = axios.create({
     baseURL: baseUrl + 'api/',
     timeout: 2000,
@@ -17,7 +17,7 @@ let api = axios.create({
 
 
 let auth = axios.create({
-    baseURL: '//localhost:3000/',
+    baseURL: '',
     timeout: 2000,
     withCredentials: true
 })
