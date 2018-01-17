@@ -1,98 +1,12 @@
  <div class="background">
         <img src="https://i.pinimg.com/originals/95/3a/3a/953a3a44d0e7c18f66a2481e2dc9707b.jpg" alt="Gamer">
     </div>
-    <div class="header">
-        <a href="https://github.com/MorganW2017">
-            <h1>Morgan W</h1>
-
-
-            <div class="worm"></div>
-        <svg viewbox="0 -5 400 400" class="worm">
-            <circle />
-            <circle />
-            <circle />
-            <circle />
-            <circle />
-            <circle />
-            <circle />
-            <circle />
-            <circle />
-            <circle />
-            <circle />
-            <circle />
-            <circle />
-            <circle />
-            <circle />
-            <circle />
-            <circle />
-            <circle />
-            <circle />
-            <circle />
-            <circle />
-            <circle />
-            <circle />
-            <circle />
-            <circle />
-            <circle />
-            <circle />
-            <circle />
-            <circle />
-            <circle />
-            <circle />
-            <circle />
-            <circle />
-            <circle />
-            <circle />
-            <circle />
-            <circle />
-            <circle />
-            <circle />
-            <circle />
-            <circle />
-            <circle />
-            <circle />
-            <circle />
-            <circle />
-        </svg>
-    </div>
-
-    <div class="clock">
+  
+        <!--
+        <div class="clock">
         <iframe src="SVGDigitalClock.svg" width="300" height="200"> </iframe>
 
-
-        <div class='wrapper'>
-        <div class='container'>
-            <div class='sphere'>
-                <div class='ring'></div>
-                <div class='ring'></div>
-                <div class='ring'></div>
-                <div class='ring'></div>
-                <div class='ring'></div>
-                <div class='ring'></div>
-                <div class='ring'></div>
-                <div class='ring'></div>
-                <div class='ring'></div>
-                <div class='ring'></div>
-            </div>
-            <div class='sphere'>
-                <div class='ring'></div>
-                <div class='ring'></div>
-                <div class='ring'></div>
-                <div class='ring'></div>
-                <div class='ring'></div>
-                <div class='ring'></div>
-                <div class='ring'></div>
-                <div class='ring'></div>
-                <div class='ring'></div>
-                <div class='ring'></div>
-            </div>
-        </div>
-
-        <!--
         https://morganw2017.github.io/Slap-Game/ - used for a project card/well
-
-
-
 
         THE SVG FILES WERE USED JUST FOR PRESENTATION PURPOSES, PROOF OF CONCEPT FOR FUTURE REFERENCE
 

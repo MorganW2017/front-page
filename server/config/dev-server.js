@@ -18,7 +18,7 @@ function Validate(req, res, next) {
     // ONLY ALLOW GET METHOD IF NOT LOGGED IN 
     console.log(req.session)
     if (req.method !== 'GET' && !req.session.uid) {
-        return res.status(401).send({ error: 'Please Login or Register to continue' })
+        return res.send({ error: 'Please Login or Register to continue' })
     }
     return next()
 }
@@ -35,16 +35,26 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use('*', logger)
 app.use('*', cors(corsOptions))
 app.use('/', Auth)
-
+app.use(express.static(__dirname + '/../../www/build'))
 // LOCKS API TO REQUIRE USER AUTH
 app.use(Validate)
 app.use('/api', api)
 app.use('/', defaultErrorHandler)
 
-let io = require('socket.io')(server, {
-    origins: '*:*'
-})
+// let io = require('socket.io')(server, {
+//     origins: '*:*'
+// })
 
+// io.on('connection', function (socket) {
+//     socket.emit('CONNECTED', {
+//         socket: socket.id,
+//         message: 'Welcome'
+//     })
 
+//     socket.on('update', (d) => {
+//         console.log(UD)
+//     })
+
+// })
 
 module.exports = server
