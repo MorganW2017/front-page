@@ -10,14 +10,14 @@ var production = !window.location.host.includes('localhost');
 var baseUrl = production ? '//morgan-get.herokuapp.com/' : '//localhost:3000/';
 // var baseUrl = window.location.host.includes('localhost') ? '//morgan-get.herokuapp.com/' : '//localhost:3000/';
 let api = axios.create({
-    baseURL: baseUrl + 'api/',
+    baseURL: baseUrl + 'api',
     timeout: 2000,
     withCredentials: true
 })
 
 
 let auth = axios.create({
-    baseURL: '/',
+    baseURL: baseUrl,
     timeout: 2000,
     withCredentials: true
 })
