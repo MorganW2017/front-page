@@ -1,16 +1,15 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
-import router from '../router'
+import router from 'router'
 import SuiVue from 'semantic-ui-vue';
 import 'semantic-ui-css/semantic.min.css';
 
 
-var production = !window.location.host.includes('localhost');
-var baseUrl = production ? '//morgan-get.herokuapp.com/' : '//localhost:3000/';
-// var baseUrl = window.location.host.includes('localhost') ? '//morgan-get.herokuapp.com/' : '//localhost:3000/';
+let baseUrl = window.location.host.indexOf('localhost') > -1 ? '//localhost:3000/' : '/'
+
 let api = axios.create({
-    baseURL: baseUrl + 'api',
+    baseURL: baseUrl + 'api/',
     timeout: 2000,
     withCredentials: true
 })
@@ -43,7 +42,8 @@ var store = new Vuex.Store({
     actions: {
 
         //---------LOGIN/REGISTER/LOGOUT-----------//
-        userLogin({ commit, dispatch }, login) { console.log(login)
+        userLogin({ commit, dispatch }, login) {
+            console.log(login)
             auth.post('login', login)
                 .then(res => {
                     commit('setUser', res.data.data)
