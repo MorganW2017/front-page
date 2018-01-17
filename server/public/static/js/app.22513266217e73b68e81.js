@@ -61,7 +61,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(437);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios__ = __webpack_require__(126);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_axios__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__router__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_router__ = __webpack_require__(63);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_semantic_ui_vue__ = __webpack_require__(340);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_semantic_ui_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_semantic_ui_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_semantic_ui_css_semantic_min_css__ = __webpack_require__(200);
@@ -74,11 +74,10 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_
 
 
 
-var production = !window.location.host.includes('localhost');
-var baseUrl = production ? '//morgan-get.herokuapp.com/' : '//localhost:3000/';
-// var baseUrl = window.location.host.includes('localhost') ? '//morgan-get.herokuapp.com/' : '//localhost:3000/';
+let baseUrl = window.location.host.indexOf('localhost') > -1 ? '//localhost:3000/' : '/'
+
 let api = __WEBPACK_IMPORTED_MODULE_2_axios___default.a.create({
-    baseURL: baseUrl + 'api',
+    baseURL: baseUrl + 'api/',
     timeout: 2000,
     withCredentials: true
 })
@@ -111,35 +110,36 @@ var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
     actions: {
 
         //---------LOGIN/REGISTER/LOGOUT-----------//
-        userLogin({ commit, dispatch }, login) { console.log(login)
+        userLogin({ commit, dispatch }, login) {
+            console.log(login)
             auth.post('login', login)
                 .then(res => {
                     commit('setUser', res.data.data)
-                    __WEBPACK_IMPORTED_MODULE_3__router__["a" /* default */].push({ name: 'Home' })
+                    __WEBPACK_IMPORTED_MODULE_3_router__["a" /* default */].push({ name: 'Home' })
                 })
                 .catch(() => {
-                    __WEBPACK_IMPORTED_MODULE_3__router__["a" /* default */].push({ name: "Login" })
+                    __WEBPACK_IMPORTED_MODULE_3_router__["a" /* default */].push({ name: "Login" })
                 })
         },
         userRegister({ commit, dispatch }, register) {
             auth.post('register', register)
                 .then(res => {
                     commit('setUser', res.data.data)
-                    __WEBPACK_IMPORTED_MODULE_3__router__["a" /* default */].push({ name: 'Home' })
+                    __WEBPACK_IMPORTED_MODULE_3_router__["a" /* default */].push({ name: 'Home' })
                 })
                 .catch(err => {
                     commit('handleError', err)
-                    __WEBPACK_IMPORTED_MODULE_3__router__["a" /* default */].push({ name: "Login" })
+                    __WEBPACK_IMPORTED_MODULE_3_router__["a" /* default */].push({ name: "Login" })
                 })
         },
         authenticate({ commit, dispatch }) {
             auth('authenticate')
                 .then(res => {
                     commit('setUser', res.data.data)
-                    __WEBPACK_IMPORTED_MODULE_3__router__["a" /* default */].push({ name: 'Home' })
+                    __WEBPACK_IMPORTED_MODULE_3_router__["a" /* default */].push({ name: 'Home' })
                 })
                 .catch(() => {
-                    __WEBPACK_IMPORTED_MODULE_3__router__["a" /* default */].push({ name: "Login" })
+                    __WEBPACK_IMPORTED_MODULE_3_router__["a" /* default */].push({ name: "Login" })
                 })
         },
         logout({ commit, dispatch }, user) {
@@ -977,4 +977,4 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_
 /***/ })
 
 },[440]);
-//# sourceMappingURL=app.ef40de9f215f86d2fbc9.js.map
+//# sourceMappingURL=app.22513266217e73b68e81.js.map
